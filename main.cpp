@@ -119,6 +119,9 @@ void printPath(pair<int,int> exitcell,
 // ----------------------------------------------------------
 bool dfs(int r, int c,
          const vector<vector<int>>& maze,
+         vector<vector<bool>>& visited,
+         vector<vector<int>>& parent_r,
+         vector<vector<int>>& parent_c,
          int exit_r, int exit_c) {
 
     if (r == exit_r && c == exit_c) {
