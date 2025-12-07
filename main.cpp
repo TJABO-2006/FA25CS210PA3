@@ -138,15 +138,27 @@ bool dfs(int r, int c,
             int nr = r + dr[d];
             int nc = c + dc[d];
 
-                // Check if out-of-bounds
-                if (nr < 0 || nr >= maze.size()) continue;
-                if (nc < 0 || nc >= maze[0].size()) continue;
+            // Check if out-of-bounds
+            if (nr < 0 || nr >= maze.size()) continue;
+            if (nc < 0 || nc >= maze[0].size()) continue;
 
-                // Check if there is a wall nearby
-                if (maze[nr][nc] == 1) continue;
+            // Check if it is a wall
+            if (maze[nr][nc] == 1) continue;
 
-                // Mark visited if complete
-                if (visited[nr][nc] == true) continue;
+            // Check if location is already visited
+            if (visited[nr][nc] == true) continue;
+
+            if (visited[nr][nc] == false) {
+                parent_r[nr][nc] = r;
+                parent_c[nr][nc] = c;
+            }
+
+            if (dfs(nr, nc,maze, visited, parent_r, parent_c, exit_r, exit_c) == true) {
+                return true;
+            }
+
+        }
+    }
 
 
     return false;
@@ -191,17 +203,17 @@ int main() {
     // STUDENT WORK:
     // Call your DFS, track visited, and fill parent_r and parent_c
     // ------------------------------------------------------
-    bool found = dfs(ent_r, ent_c, maze, visited, parent_r, parent_c, exit_r, exit_c);
+    // bool found = dfs(ent_r, ent_c, maze, visited, parent_r, parent_c, exit_r, exit_c);
 
     // ------------------------------------------------------
     // STUDENT WORK:
     // If found, print the path
     // ------------------------------------------------------ **
-    if (found) {
-        printPath(exitcell, parent_r, parent_c, ent_r, ent_c);
-    } else {
-        cout << "\nNo path exists.\n";
-    }
+    // if (found) {
+    //     printPath(exitcell, parent_r, parent_c, ent_r, ent_c);
+    // } else {
+    //     cout << "\nNo path exists.\n";
+    // }
 
     return 0;
 }
