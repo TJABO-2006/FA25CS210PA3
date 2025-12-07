@@ -124,8 +124,20 @@ bool dfs(int r, int c,
          vector<vector<int>>& parent_c,
          int exit_r, int exit_c) {
 
+    // base case if we are on the exit already
     if (r == exit_r && c == exit_c) {
         return true;
+    }
+
+    // Detect if current location is valid
+    if (maze[r][c] == 0) {
+        visited[r][c] = true;
+
+        // Trying each direction to move in
+        for (int d = 0; d < 4; d++) {
+            int nr = r + dr[d];
+            int nc = c + dc[d];
+        }
     }
 
 
