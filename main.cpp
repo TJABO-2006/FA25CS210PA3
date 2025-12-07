@@ -137,13 +137,19 @@ bool dfs(int r, int c,
         for (int d = 0; d < 4; d++) {
             int nr = r + dr[d];
             int nc = c + dc[d];
-        }
-    }
+
+                // Check if out-of-bounds
+                if (nr < 0 || nr >= maze.size()) continue;
+                if (nc < 0 || nc >= maze[0].size()) continue;
+
+                // Check if there is a wall nearby
+                if (maze[nr][nc] == 1) continue;
+
+                // Mark visited if complete
+                if (visited[nr][nc] == true) continue;
 
 
     return false;
-
-
 
 }
 
